@@ -15,6 +15,7 @@
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "metadata": "^0.1.0",
+    "netx-auth": "link:beta",
     "next": "15.2.0-canary.33",
     "next-auth": "5.0.0-beta.25",
     "openssl": "^2.0.0",
