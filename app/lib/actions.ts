@@ -75,7 +75,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
           VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
         `;
   } catch (error) {
-    // We'll log the error to the console for now
+    // We'll console log the error
     console.error(error);
   }
 
