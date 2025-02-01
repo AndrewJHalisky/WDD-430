@@ -4,15 +4,22 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { signIn } from '@/auth';
+import { signIn } from 'next-auth/react';
 import { AuthError } from 'next-auth';
 
 export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
+  prevState: string | undefined, 
+  formData: FormData) {
   try {
-    await signIn('credentials', formData);
+    const response = await signIn('credentials', {
+      email: formData.get('email'),
+      password: formData.get('password'),
+      redirect: false,
+    });
+
+    if (!response?.ok) {
+      return 'Invalid credentials.';
+    }
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
